@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <>
         <h1>React development has begun!</h1>
-        <Greeter />
+        <Greeter greeting="sup"/>
       </>
     )
   }

@@ -1,9 +1,12 @@
 import React from 'react'
 
 export default class Greeter extends React.Component {
-    state = {
-        greeting: "hello world",
-        showGreeting: true
+    constructor(props) {
+        super(props)
+        this.state = {
+            greeting: props.greeting,
+            showGreeting: true
+        }
     }
 
     toggleGreeting = () => {
@@ -11,6 +14,8 @@ export default class Greeter extends React.Component {
     }
 
     render() {
+        console.log(this.state)
+        console.log(this.props)
         let label = this.state.showGreeting ? 'hide' : 'show'
         return <div>
             Greetings
