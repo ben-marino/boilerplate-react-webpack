@@ -14,8 +14,6 @@ export default class Greeter extends React.Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.props)
         let label = this.state.showGreeting ? 'hide' : 'show'
         return <div>
             <h2>{this.state.showGreeting && this.state.greeting}</h2>
