@@ -1,6 +1,7 @@
 import React from 'react'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import Greeter from './Greeter'
+import JediList from './JediList'
 
 
 class App extends React.Component {
@@ -9,15 +10,9 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <h1>React development has begun!</h1>
-          <Link to='/'>Home</Link>
-          <Link to='/greet/hi'>Hi</Link>
-          <Link to='/greet/yo'>Yo</Link>
-          <Route path='/' exact={true}>
-            <Greeter greeting="sup"/>
-          </Route>
-          <Route path='/greet/:greeting' exact={true} component={Greeter} />
-
+          <Link to='/jedis/light'>Goodies</Link> |
+          <Link to='/jedis/dark'>Baddies</Link>
+          <Route path='/jedis/:force' component={JediList} />
         </Router>
       </>
     )
