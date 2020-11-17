@@ -1,15 +1,9 @@
 const buildingMaterial = {
 
     
-    twig: [
-        {
-            C4: 1,
-            Rockets: 1,
-            ExplosiveAmmo: 1,
-            SatchelCharge: 1
-        }
+    
 
-    ],
+
     wood: [
 
         {
