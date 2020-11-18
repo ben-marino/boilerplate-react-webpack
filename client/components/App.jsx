@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-const App = () => {
+function App() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [activities, setActivities] = useState({})
+
+  //Strava Credentials
+  let clientID = "55778";
+  let clientSecret = "71627df28efc055f2f219330988170a0267d44dd";
+
+  // refresh token and call address
+  const refreshToken = "c9a606ce2cce3fcd96f5f18b6ec55a49fee14cb6";
+  const callRefresh = `https://www.strava.com/oauth/token?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`
+  
+  // endpoint for read-all activities. temporary token is added in getActivities()
+  const callActivities = `https://www.strava.com/api/v3/athlete/activities?access_token=`
+
+  // Use refresh token to get current access token
+  useEffect(() => {
+    fetch(callRefresh, {
+      method: 'POST'
+    })
+    .then(res => res.json())
+    .then(result => getActivities(result.access_token))
+  }, [callRefresh])
+
+  // use current access token to call all activities
+  function getActivities(access){
+    // console.log(callActivities + access)
+      fetch(callActivities + access)
+      .then(res => res.json())
+      .then(data => setActivities(data), setIsLoading(prev => !prev))
+      .catch(e => console.log(e))
+  }
+
+  function showActivities(){
+    if(isLoading) return <>LOADING</>
+    if(!isLoading) {
+      console.log(activities)
+      return activities.length
+    }
+  }
+
   return (
-    <h1>React development has begun!</h1>
-  )
+    <div className="App">
+      {showActivities()}
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
